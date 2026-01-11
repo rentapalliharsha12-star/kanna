@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Private 💫</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+body{
+  height:100vh;
+  background:radial-gradient(circle at top,#050b2e,#01010a);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  color:white;
+}
+
+/* stars */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(1px 1px at 10% 20%,white,transparent),
+    radial-gradient(1px 1px at 80% 30%,white,transparent),
+    radial-gradient(1px 1px at 40% 70%,white,transparent),
+    radial-gradient(1px 1px at 60% 50%,white,transparent);
+  animation:twinkle 6s infinite alternate;
+}
+
+@keyframes twinkle{
+  from{opacity:.4}
+  to{opacity:1}
+}
+
+.lock-box{
+  text-align:center;
+  padding:40px;
+  border-radius:26px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(14px);
+  box-shadow:0 0 60px rgba(120,160,255,.35);
+  animation:fadeUp 1.2s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.lock{
+  font-size:70px;
+  margin-bottom:20px;
+}
+
+input{
+  width:260px;
+  padding:14px;
+  border-radius:14px;
+  border:none;
+  outline:none;
+  text-align:center;
+  font-size:18px;
+}
+
+button{
+  margin-top:18px;
+  padding:12px 36px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(135deg,#6a7cff,#a0b4ff);
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+  box-shadow:0 0 25px rgba(120,160,255,.6);
+}
+
+.error{
+  margin-top:14px;
+  color:#ff9aa2;
+  display:none;
+}
+.back-btn{
+  position:fixed;
+  top:22px;
+  left:22px;
+  padding:12px 26px;
+  border-radius:40px;
+  border:1px solid rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.08);
+  color:#ffffff;
+  font-size:16px;
+  font-weight:500;
+  cursor:pointer;
+  backdrop-filter:blur(12px);
+  box-shadow:
+    0 0 18px rgba(255,255,255,0.15),
+    inset 0 0 12px rgba(255,255,255,0.08);
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+  z-index:999;
+}
+.back-btn:hover{
+  background:rgba(255,255,255,0.18);
+  box-shadow:
+    0 0 30px rgba(255,255,255,0.45),
+    inset 0 0 18px rgba(255,255,255,0.25);
+  transform:translateY(-2px);
+}
+.back-btn:active{
+  transform:scale(.96);
+  box-shadow:
+    0 0 20px rgba(255,255,255,0.25);
+}
+
+
+</style>
+</head>
+
+<body>
+
+<button class="back-btn" onclick="goCake()">⬅ Back</button>
+<div class="lock-box">
+  <div class="lock">🔒</div>
+  <h2>Private Page ❤️‍🔥</h2>
+  <p style="opacity:.8;margin:10px 0 20px">Only for you 🫂</p>
+
+  <input id="code" placeholder="Enter secret code">
+  <br>
+  <button onclick="unlock()">Unlock ✨</button>
+
+  <div class="error" id="err">Wrong code 💔</div>
+</div>
+
+
+
+<script>
+function unlock(){
+  const code=document.getElementById("code").value;
+  if(code==="22558859"){
+    document.body.style.opacity=0;
+    setTimeout(()=>{
+      window.location.href="story.html";
+    },900);
+  }else{
+    document.getElementById("err").style.display="block";
+  }
+}
+
+function goCake(){
+  document.body.style.opacity=0;
+  setTimeout(()=>{
+    window.location.href="cake.html";
+  },700);
+}
+</script>
+
+</body>
+</html>

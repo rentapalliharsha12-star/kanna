@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Our Beautiful Journey 🌙</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+
+body{
+  height:100vh;
+  overflow:hidden;
+  color:#fff;
+}
+#nightCanvas{
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  background: radial-gradient(circle at top, #0b1026, #000);
+}
+
+
+/* 🚫 REMOVE BLUE FLASH FROM MEMORY CARDS */
+.event,
+.event::before{
+  box-shadow:none !important;
+}
+
+
+
+/* HEADER */
+header{text-align:center;margin-top:30px}
+header h1{
+  font-size:2.9rem;
+  font-weight:700;
+  background:linear-gradient(120deg,#7afcff,#ff9de2,#ffe29a);
+  background-size:300%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation: aurora 6s linear infinite;
+}
+@keyframes aurora{
+  to{background-position:300%}
+}
+
+
+header p{
+  font-size:1rem;
+  opacity:.85;
+  letter-spacing:3px;
+  margin-top:8px;
+  text-shadow:0 0 10px rgba(255,150,200,.4);
+}
+
+
+/* TIMELINE */
+.timeline{
+  position:absolute;
+  bottom:192px;
+  left:50%;
+
+  transform:translateX(-50%);
+  width:980px;
+  display:flex;
+  gap:30px;
+  padding:20px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+
+  align-items:flex-start;
+
+}
+.timeline::-webkit-scrollbar{display:none}
+
+/* CARD */
+.event{
+  flex:0 0 300px;
+  height:220px;
+  position:relative;
+  overflow:hidden;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+ background: linear-gradient(
+  160deg,
+  rgba(18,24,54,0.85),
+  rgba(45,10,35,0.85)
+);
+border: 1px solid rgba(255,120,180,0.35);
+box-shadow: 0 20px 50px rgba(255,80,160,0.35);
+
+  border-radius:22px;
+
+
+}
+
+.event{
+  padding:18px;
+}
+
+
+.event:hover{
+  transform:translateY(-14px) scale(1.05);
+}
+
+
+.event:hover img,
+.event:hover video{
+  transform:scale(1.04);
+}
+
+
+.event img,
+.event video{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  margin:auto;
+  border-radius:14px;
+  background:transparent;
+}
+
+
+
+.event::before{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border-radius:18px;
+  pointer-events:none;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.15),
+      rgba(255,255,255,0.02)
+    );
+    box-shadow:
+    inset 0 0 25px rgba(255,255,255,.08);
+}
+
+
+
+
+.event p{
+  backdrop-filter:blur(8px);
+  box-shadow:
+    inset 0 0 25px rgba(0,0,0,0.6);
+    z-index: 3;
+}
+
+
+/* MEMORY CARD TEXT OVERLAY */
+.event{
+  position:relative;
+  overflow:hidden;
+  flex:0 0 300px;
+  height:220px;
+}
+
+/* caption overlay */
+/* 🎬 CINEMATIC MEMORY CAPTION */
+.event p{
+  position:absolute;
+  inset:0;
+  padding:22px 18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+
+  background:rgba(0,0,0,0.65);
+  backdrop-filter:blur(12px);
+
+  color:#fff;
+  font-size:0.95rem;
+  line-height:1.7;
+
+  opacity:0;
+  transform:translateY(100%);
+  transition:.4s ease;
+
+  /* 🔥 FIXES */
+  overflow-y:auto;
+  overflow-x:hidden;
+  word-break: break-word;
+  white-space: normal;
+}
+
+
+.event:hover p,
+.event:active p{
+  opacity:1;
+  transform:translateY(0);
+  filter:blur(0);
+}
+
+
+
+
+/* ARROWS */
+.arrow{
+  position:absolute;
+  bottom:288px;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:28px;
+  cursor:pointer;
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(10px);
+  z-index:5;
+}
+.arrow.left{left:calc(50% - 560px)}
+.arrow.right{right:calc(50% - 560px)}
+
+.arrow:hover{
+  transform:scale(1.15);
+  background:rgba(255,255,255,0.25);
+  box-shadow:
+    0 0 25px rgba(255,255,255,0.35),
+    0 0 45px rgba(255,255,255,0.15);
+}
+.arrow:active{
+  transform:scale(1.05);
+}
+
+/* BUTTON */
+.main-btn{
+  position:fixed;
+  bottom:70px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:14px 44px;
+  border:none;border-radius:999px;
+  background:linear-gradient(135deg,#ff5fa2,#ff89c6);
+  color:#fff;font-size:1rem;
+  cursor:pointer;z-index:5;
+  transition:0.35s ease;
+}
+.main-btn::before{
+  content:"";
+  position:absolute;
+  inset:-3px;
+  border-radius:999px;
+  background:linear-gradient(
+    135deg,
+    rgba(255,95,162,.8),
+    rgba(255,137,198,.8),
+    rgba(255,95,162,.8)
+  );
+  opacity:0;
+  filter:blur(12px);
+  transition:.35s ease;
+  z-index:-1;
+}
+
+.main-btn:hover::before{
+  opacity:1;
+}
+
+.main-btn:hover{
+  transform:translateX(-50%) scale(1.08);
+  box-shadow:
+    0 0 25px rgba(248, 173, 204, 0.8),
+    0 0 55px rgba(209, 197, 203, 0.6);
+}
+
+/* soft press */
+.main-btn:active{
+  transform:translateX(-50%) scale(0.96);
+}
+
+/* ================= CINEMATIC PAGE TRANSITION ================= */
+.page-transition{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background: radial-gradient(circle at center, #0b1026, #000);
+  pointer-events:none;
+  opacity:1;                 /* START VISIBLE */
+  transition: opacity 0.9s ease;
+}
+
+.page-transition.hide{
+  opacity:0;                 /* REVEAL PAGE */
+}
+
+
+/* VIEWER */
+.viewer{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.75);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  pointer-events:none;
+  transition:.4s;
+  z-index:10;
+}
+.viewer.active{opacity:1;pointer-events:auto}
+
+.viewer-content{
+  width:90%;
+  max-width:900px;
+  height:80vh;
+  background:#000;
+  border-radius:24px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  animation:zoom .5s ease forwards;
+}
+@keyframes zoom{from{transform:scale(.7)}to{transform:scale(1)}}
+
+.viewer-content img,
+.viewer-content video{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  display:block;
+  margin:auto;
+  border-radius:16px;
+
+  box-shadow:
+    0 0 25px rgba(255,255,255,0.15),
+    0 0 60px rgba(120,160,255,0.2);
+}
+.viewer-content video{
+  background:#000;
+}
+
+/* MAGIC NIGHT FRAME */
+.viewer-content::before{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border-radius:20px;
+  pointer-events:none;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.12),
+      rgba(255,255,255,0.02)
+    );
+
+  box-shadow:
+    inset 0 0 40px rgba(255,255,255,0.08),
+    0 0 60px rgba(120,160,255,0.25),
+    0 0 120px rgba(120,160,255,0.15);
+}
+
+/* BIG CONTROLS */
+.viewer-content video::-webkit-media-controls-panel{
+  transform:scale(1.35);
+}
+.fullscreen-btn{
+  position:absolute;
+  bottom:18px;
+  right:18px;
+  padding:10px 16px;
+  border:none;
+  border-radius:999px;
+  background:rgba(255,255,255,.2);
+  color:white;
+  font-size:14px;
+  cursor:pointer;
+  backdrop-filter:blur(10px);
+  box-shadow:0 0 20px rgba(255,255,255,.3);
+  transition:.3s;
+}
+.fullscreen-btn:hover{
+  background:rgba(255,255,255,.35);
+}
+/* viewer message text */
+.viewer-message{
+  color:#fff;
+  font-size:1.2rem;
+  text-align:center;
+  margin-top:14px;
+  opacity:.9;
+}
+.memory-text {
+  max-width: 100%;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+#audioUnlock{
+  position:fixed;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:22px;
+  letter-spacing:1px;
+  background:transparent;
+  color:#ffd6e8;
+  z-index:9999;
+  cursor:pointer;
+  animation:fadeIn 1s ease;
+}
+
+/* MUSIC BUTTON */
+.music-btn{
+  position:fixed;
+  top:28px;
+  right:28px;
+
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  border:none;
+
+  background:linear-gradient(135deg,#ff7eb3,#9c7bff);
+  color:white;
+  font-size:20px;
+
+  cursor:pointer;
+  z-index:999;
+
+  box-shadow:
+    0 0 18px rgba(255,120,180,.45),
+    inset 0 0 10px rgba(255,255,255,.25);
+
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+
+.music-btn:hover{
+  transform:scale(1.08);
+  box-shadow:
+    0 0 28px rgba(255,120,180,.7),
+    inset 0 0 14px rgba(255,255,255,.35);
+}
+
+</style>
+</head>
+
+<body>
+
+
+
+<header>
+  <h1>💖 Our Beautiful Journey 💖</h1>
+  <p>SEE THROUGH MEMORIES OUR JOURNEY REMINDS YOU OUR LOVE 💕</p>
+</header>
+
+
+<canvas id="nightCanvas"></canvas>
+
+<div class="timeline">
+  <div class="event"><img src="h23.jpg"><p class="memory-text">Mana Sneham Strong Ayina Roju Idhenemo 🥰🫂</p></div>
+  <div class="event"><img src="h1.jpeg"><p class="memory-text">Aa Roju Nilo Chusina Anandham Ni Chusi Entha Murisipoyanooo Raa 💖</p></div>
+  <div class="event"><img src="h70.jpg"><p class="memory-text">Indilo Nuv Ichave Pose Uuu Chinnapilla Laga Cute ga Vunnave 😘</p></div>
+  <div class="event"><img src="h11.jpg"><p class="memory-text">Intha Close Ga Nenu Evarithonu Lenu Ra This Is The Best Pic Of My Life 💗</p></div>
+  <div class="event"><img src="h16.jpg"><p class="memory-text">Ninu First Time Saree Lo Chusinnapude Fidaaa Ayipoya Like Slave Ayipoya 🫣🫣</p></div>
+  <div class="event"><img src="kk.jpg"><p class="memory-text">Naku Nee Selfies Lo Aa Modern Look lo Baga Nachindhi Nee Smile Ela Ra Babu Naku Ippati Photo Diguthame Radhu 😄😍 </p></div>
+  <div class="event"><img src="h17.jpg"><p class="memory-text">Anni Selfies Oka Level Ante Ee Selfie Vere Level Naku Picchi Ekkinchesavee 💕</p></div>
+  <div class="event"><video src="v1.mp4" muted></video><p class="memory-text">Kanna Naku Nuv Ichina Ee Moment Mundhu Katchitamga Inkedhi Paniki Radhu Raa 🥹🫂</p></div>
+</div>
+
+<div class="arrow left" onclick="scrollTimeline(-1)">❮</div>
+<div class="arrow right" onclick="scrollTimeline(1)">❯</div>
+
+<button class="main-btn" onclick="goCake()">Always Yours 💕</button>
+
+
+<div class="viewer" onclick="closeViewer(event)">
+  <div class="viewer-content"></div>
+</div>
+<div class="page-transition"></div>
+<div id="audioUnlock"></div>
+<audio id="bgMusic" loop></audio>
+<button id="musicBtn" class="music-btn">🔇</button>
+
+
+<script>
+const viewer=document.querySelector(".viewer");
+const content=document.querySelector(".viewer-content");
+const timeline=document.querySelector(".timeline");
+
+/* OPEN */
+document.querySelectorAll(".event").forEach(card=>{
+  card.onclick = e => {
+    e.stopPropagation();
+    content.innerHTML = "";
+
+    const img = card.querySelector("img");
+    const video = card.querySelector("video");
+
+    if(img){
+      const fullImg = document.createElement("img");
+      fullImg.src = img.src;
+      content.appendChild(fullImg);
+    }
+
+    if(video){
+      const fullVideo = document.createElement("video");
+      fullVideo.src = video.src;
+      fullVideo.controls = true;
+      fullVideo.autoplay = true;
+      fullVideo.playsInline = false;
+      content.appendChild(fullVideo);
+      // 🔽 AUDIO DUCKING
+music.volume = DUCK_VOL;
+
+    }
+
+    viewer.classList.add("active");
+  };
+});
+
+
+/* CLOSE */
+function closeViewer(e){
+  if(e.target===viewer){
+    viewer.classList.remove("active");
+
+    const v = viewer.querySelector("video");
+    if(v){
+      v.pause();
+      v.currentTime = 0;
+    }
+
+    // 🔼 RESTORE AUDIO
+    music.volume = NORMAL_VOL;
+  }
+}
+
+const canvas = document.getElementById("nightCanvas");
+const ctx = canvas.getContext("2d");
+
+function resize(){
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+}
+resize();
+addEventListener("resize", resize);
+
+/* ================= STARS ================= */
+const stars = Array.from({length:150},()=>({
+  x:Math.random()*canvas.width,
+  y:Math.random()*canvas.height,
+  r:Math.random()*1.5,
+  a:Math.random(),
+  d:Math.random()*0.02+0.005
+}));
+
+/* ================= GLOW PARTICLES ================= */
+const glows = Array.from({length:50},()=>({
+  x:Math.random()*canvas.width,
+  y:Math.random()*canvas.height,
+  r:Math.random()*3+2,
+  vx:(Math.random()-0.5)*0.2,
+  vy:(Math.random()-0.5)*0.2
+}));
+
+/* ================= HEARTS ================= */
+const hearts = Array.from({length:25},()=>({
+  x:Math.random()*canvas.width,
+  y:canvas.height+Math.random()*canvas.height,
+  s:Math.random()*0.6+0.4,
+  v:Math.random()*0.3+0.2
+}));
+
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  /* Stars */
+  stars.forEach(s=>{
+    s.a+=s.d;
+    if(s.a>1||s.a<0) s.d*=-1;
+    ctx.fillStyle=`rgba(255,255,255,${s.a})`;
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fill();
+  });
+
+  /* Glow particles */
+  glows.forEach(g=>{
+    g.x+=g.vx;
+    g.y+=g.vy;
+    if(g.x<0||g.x>canvas.width) g.vx*=-1;
+    if(g.y<0||g.y>canvas.height) g.vy*=-1;
+
+    const grad=ctx.createRadialGradient(g.x,g.y,0,g.x,g.y,g.r*5);
+    grad.addColorStop(0,"rgba(255,120,180,0.6)");
+    grad.addColorStop(1,"transparent");
+
+    ctx.fillStyle=grad;
+    ctx.beginPath();
+    ctx.arc(g.x,g.y,g.r*5,0,Math.PI*2);
+    ctx.fill();
+  });
+
+  /* Hearts */
+  hearts.forEach(h=>{
+    h.y-=h.v;
+    if(h.y<-50){
+      h.y=canvas.height+50;
+      h.x=Math.random()*canvas.width;
+    }
+    ctx.font=`${18*h.s}px serif`;
+    ctx.fillStyle="rgba(255,100,150,0.6)";
+    ctx.fillText("❤",h.x,h.y);
+  });
+
+  requestAnimationFrame(draw);
+}
+draw();
+
+/* SCROLL */
+function scrollTimeline(d){
+  timeline.scrollBy({left:d*330,behavior:"smooth"});
+}
+viewer.addEventListener("transitionend",()=>{
+  document.body.classList.toggle("open",viewer.classList.contains("active"));
+});
+
+
+function goCake(){
+  cinematicNavigate("cake.html");
+}
+
+const transitionLayer = document.querySelector(".page-transition");
+
+/* CINEMATIC IN */
+window.addEventListener("load", () => {
+  requestAnimationFrame(() => {
+    transitionLayer.classList.add("hide");
+  });
+});
+
+/* CINEMATIC OUT (already working for you) */
+function cinematicNavigate(url){
+  transitionLayer.classList.remove("hide");
+  setTimeout(()=>{
+    window.location.href = url;
+  },900);
+}
+/* STOP shared music */
+localStorage.removeItem("musicState");
+
+const music = document.getElementById("bgMusic");
+const btn = document.getElementById("musicBtn");
+
+music.src = "ghost.mp3";
+const NORMAL_VOL = 0.4;
+const DUCK_VOL = 0.05; // 🔥 very light background
+
+music.volume = NORMAL_VOL;
+
+
+let unlocked = false;
+
+/* unlock on click */
+const unlock = document.getElementById("audioUnlock");
+
+unlock.onclick = () => {
+  music.play().then(()=>{
+    unlock.style.display="none";
+    btn.textContent="🔊";
+    localStorage.setItem("musicState","playing");
+  }).catch(()=>{});
+};
+
+
+btn.onclick = (e)=>{
+  e.stopPropagation();
+  if (music.paused) {
+    music.play();
+    btn.textContent="🔊";
+  } else {
+    music.pause();
+    btn.textContent="🔇";
+  }
+};
+</script>
+
+</body>
+</html>

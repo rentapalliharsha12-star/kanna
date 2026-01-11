@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Our Story 🌌</title>
+
+<style>
+/* ================= RESET ================= */
+*{ 
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Georgia",serif;
+} 
+body
+{ 
+  min-height:100vh; 
+  background:linear-gradient(#020617,#050b2e);
+   color:#f5f5f5;
+    overflow:hidden; 
+    /* 🔒 page does NOT scroll */ 
+    display:flex; 
+    justify-content:center;
+     align-items:center; 
+}
+
+
+/* ================= SPA PAGES ================= */
+.page{
+  position:fixed;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  pointer-events:none;
+}
+
+.page.active{
+  opacity:1;
+  pointer-events:auto;
+  animation:cinematicIn 1.2s ease forwards;
+}
+
+.page.exit{
+  animation:fadeOut .9s ease forwards;
+}
+
+@keyframes cinematicIn{
+  from{opacity:0;transform:scale(.95) translateY(40px)}
+  to{opacity:1;transform:none}
+}
+@keyframes fadeOut{
+  to{opacity:0;transform:scale(.97) translateY(-20px)}
+}
+
+/* ================= STORY ================= */
+/* Hide scrollbar - Chrome, Edge, Safari */ 
+.container::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+}
+
+/* Hide scrollbar - Firefox */
+.container{
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar - IE / old Edge */
+.container{
+  -ms-overflow-style: none;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+ 
+.container{
+  max-width:700px;
+  height:70vh;                 /* 🔥 fixed visible area */
+  padding:40px 24px;
+
+  overflow-y:auto;             /* ✅ scroll ONLY text */
+  overflow-x:hidden;
+
+  animation:fadeIn 1.5s ease;
+}
+
+    @keyframes fadeIn{ 
+      from{
+        opacity:0;
+        transform:translateY(40px)
+      } 
+      to{
+        opacity:1
+      }
+     } 
+p{
+  font-size:20px;
+  line-height:1.9;
+  margin-bottom:30px;
+  opacity:.95;
+}
+
+
+
+.story-actions{
+  position:fixed;
+  bottom:40px;
+  right:40px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  z-index:100;
+  
+  /* 🔒 stop inherited motion */
+  transform:none !important;
+  animation:none !important;
+}
+.story-actions button{
+  transform:none !important;
+  animation:none !important;
+}
+.container{
+  animation: cinematicIn 1s ease;
+}
+@keyframes cinematicIn{
+  from{opacity:0;transform:scale(0.95) translateY(30px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+
+.end-btn{
+  padding:14px 40px;
+  border-radius:30px;
+  border:none;
+  background:linear-gradient(135deg,#ff7eb3,#9c7bff,#fd2ff6);
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+  box-shadow:0 0 35px rgba(255,80,120,.6);
+}
+.end-btn2{
+  padding:14px 40px;
+  border-radius:30px;
+  border:none;
+  background:linear-gradient(135deg,#a55ed8,#7284f9,#68c5d1); 
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+  box-shadow:0 0 35px rgba(255,80,120,.6);
+}
+
+.final-btn{
+  margin-top:30px;
+  background:linear-gradient(135deg,#6a85ff,#9c7bff);
+  box-shadow:0 0 35px rgba(120,140,255,.6);
+}
+/* ================= MEMORY ================= */
+#memoryCanvas{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+}
+
+.page-title{
+  position:fixed;
+  top:40px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:2rem;
+  color:#ffd6e8;
+  text-shadow:0 0 20px rgba(255,120,180,.8);
+}
+
+
+
+
+
+/* ================= BUTTONS ================= */
+.back-btn{
+  position:fixed;
+  top:22px;
+  left:22px;
+  padding:12px 26px;
+  border-radius:40px;
+  border:1px solid rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.08);
+  color:#ffffff;
+  font-size:16px;
+  font-weight:500;
+  cursor:pointer;
+  backdrop-filter:blur(12px);
+  box-shadow:
+    0 0 18px rgba(255,255,255,0.15),
+    inset 0 0 12px rgba(255,255,255,0.08);
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+  z-index:999;
+}
+.back-btn:hover{
+  background:rgba(255,255,255,0.18);
+  box-shadow:
+    0 0 30px rgba(255,255,255,0.45),
+    inset 0 0 18px rgba(255,255,255,0.25);
+  transform:translateY(-2px);
+}
+.back-btn:active{
+  transform:scale(.96);
+  box-shadow:
+    0 0 20px rgba(255,255,255,0.25);
+}
+
+.music-btn{
+  position:fixed;
+  top:30px;
+  right:30px;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  border:none;
+  background:linear-gradient(135deg,#ff7eb3,#9c7bff);
+  color:white;
+  font-size:22px;
+  cursor:pointer;
+  z-index:999;
+}
+
+#audioUnlock{
+  position:fixed;
+  inset:0;
+  background:transparent;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  cursor:pointer;
+}
+/* ===== CINEMATIC STORY SCENE ===== */
+.story-stage{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;        /* 🔒 invisible box */
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+}
+
+
+.story-text{
+  position:relative;
+  max-width:860px;        /* 🔥 LONGER LINES */
+  width:92%;
+  margin:0 auto;
+  padding-top:20vh;       /* cinematic entry space */
+}
+
+
+
+
+.story-text p{
+  font-size:18px;         /* ⬇ smaller, premium */
+  line-height:2.2;        /* Apple-style breathing */
+  letter-spacing:.2px;
+  font-weight:400;
+  margin-bottom:42px;     /* cinematic spacing */
+  opacity:.92;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+}
+/* ===== MEMORY STAGE ===== */
+
+
+
+
+
+
+/* arrows */
+.arrow{
+  position:fixed;
+  top:50%;
+  transform:translateY(-50%);
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  border:none;
+  font-size:22px;
+  cursor:pointer;
+  background:rgba(255,120,180,.3);
+  color:white;
+}
+.arrow.left{ left:40px; }
+.arrow.right{ right:40px; }
+
+/* timeline */
+
+.timeline span.active{
+  background:#ff7eb3;
+  box-shadow:0 0 12px #ff7eb3;
+}
+/* ===== MEMORY SLIDER ===== */
+.memory-slider{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.memory-rail{
+  width:260px;
+  height:340px;
+  overflow:hidden;
+  position:relative;
+}
+
+.memory-card{
+  width:260px;
+  height:340px;
+  padding:18px;
+  text-align:center;
+
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(16px);
+  border-radius:26px;
+
+  box-shadow:
+    0 0 40px rgba(255,120,180,.45),
+    inset 0 0 18px rgba(255,255,255,.1);
+
+  transition:
+    transform .8s cubic-bezier(.22,1,.36,1),
+    opacity .5s ease;
+}
+
+.memory-card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:18px;
+  margin-bottom:14px;
+}
+
+
+/* ===== WHISPER CAPTION ===== */
+
+
+/* ✨ MEMORY WHISPER CAPTION */
+
+
+/* show softly */
+
+
+/* show on tap (mobile) */
+
+/* memory page entrance */
+#memoryPage .memory-slider{
+  opacity:0;
+  transform:translateY(40px) scale(.95);
+  transition:
+    opacity 1s ease,
+    transform 1s cubic-bezier(.22,1,.36,1);
+}
+
+#memoryPage.active .memory-slider{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+
+/* ================= REAL MEMORY DESIGN ================= */
+
+.real-memory-wrapper{
+  display:flex;
+  align-items:center;
+  gap:40px;
+}
+
+.real-memory-card{
+  width:min(72vw, 300px);
+  aspect-ratio: 3 / 4;   /* 🔥 SHORTER & SWEET */
+  
+  border-radius:26px;
+  overflow:hidden;
+  position:relative;
+
+  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(14px);
+
+  box-shadow:
+    0 22px 65px rgba(255,120,180,.45);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+
+
+@keyframes realIn{
+  from{opacity:0;transform:scale(.92)}
+  to{opacity:1;transform:scale(1)}
+}
+
+.real-memory-card img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+
+  padding:14px;
+  border-radius:20px;
+
+  background:rgba(0,0,0,.18);
+}
+
+
+
+
+/* caption – soft whisper */
+/* ✨ REAL MEMORY CAPTION – PREMIUM */
+.real-caption{
+  position:absolute;
+  inset:0;
+  padding:24px 20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,.85),
+    rgba(0,0,0,.55)
+  );
+  backdrop-filter:blur(14px);
+
+  color:#fff;
+  font-size:0.95rem;
+  line-height:1.75;
+
+  opacity:0;
+  transform:translateY(100%);
+  transition:.45s cubic-bezier(.19,1,.22,1);
+
+  /* 💎 TEXT FIX */
+  overflow-y:auto;
+  overflow-x:hidden;
+  word-break:break-word;
+  white-space:normal;
+}
+
+
+/* 🔥 MAGIC: caption reacts to hover ZONE */
+.memory-hover-zone:hover .real-caption{
+  opacity:1;
+  transform:translateY(0);
+}
+
+
+
+
+/* reveal on hover / tap */
+.real-memory-card:hover .real-caption,
+.real-memory-card:active .real-caption{
+  opacity:1;
+  transform:translateY(0);
+}
+
+
+
+/* arrows */
+.real-arrow{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:none;
+
+  font-size:32px;
+  cursor:pointer;
+
+  background:rgba(255,255,255,.18);
+  color:white;
+
+  backdrop-filter:blur(10px);
+  transition:.3s;
+}
+
+.real-arrow:hover{
+  transform:scale(1.15);
+  background:rgba(255,255,255,.3);
+}
+
+.memory-card{
+  padding-bottom:60px;
+}
+.memory-hover-zone{
+  padding:60px;              /* 👈 cursor proximity area */
+}
+
+
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= STORY PAGE ================= -->
+<section id="storyPage" class="page active">
+  <div class="story-stage">
+    <div class="story-text" id="storyText">
+
+    <div class="container">
+
+<p>
+Kanna Nuv Idhi Purthiga Chudavu Emo Kani Na Kosam Chudagalava Raa  Please Niku Ibbandhi Ga
+Vunte Asalu Kindha Emi Vunna Sare Asalu Chadhavaku Please Nee Health Gurinchi Naku Chala Bayam Vesthundhi ,
+Nenu Ninu Love Chesindhi Endhuko Telusa Na Life Lo Naku 
+Jarigina Vishyalu 
+Anni Na LifePartner Vishyam Lo 
+Jaragakudadhu Ani Nenu Ninu Ela Chusukovali
+Ani Anukunnano Telidhu Kadha Niku Nenu Emi 
+Santhoshalu Anubhavinchalekhapoyanu Niku Telusu 
+Nenu Ni Life Lo Inka Chala Happiness Nimpali Anukunna 
+</p>
+<p>
+Ninu Chinnapilla Laga Chusukovali Anukunna Niku Nachindhi Chesthu 
+Vunte Happy Ga Support Cheyali
+Anukunna Raaa Kani Ni Life Lo Inkoru Vunnaru Ani Telisi Na 
+Manasu Ni Champesukuna Endhuku Ra Inka
+Nanu Frnd Ga Accept Chesav Nenu Emaina Spl Aa Appatiki Kani Kalisipoyamu 
+Entha Ante Cheppalenantha Adhi Ra Mana Love
+Inka Ninu Edho Asinchi Love Cheyaledhu Raa Idhi Raa Asalu Karanam 
+Nenu Anubhavinchani Happiness Antha Niku Parichayam Cheyali
+Inka LifeLong Alane Chusukovali Anukunna Kanna 🥹🥰
+</p>
+<p>
+Kanna Manam Nijam Ga Chala Matladukovali Raa Nuv Vintaki 
+Ready Ga Levu Ra Naku Nitho Matladali Ante Ne Bayam Vesthundhi Ra
+Nenu Mana Realtion Lo Vundakudhu Ani Anukunadhi Ee Bayame Raaa Endhuko 
+Telusaa Nee Degara Na Parents Gurinchi Abbadham Cheppanu
+Valu Nannu Appudu Appudu na Medha Love Chupistaru Ra Matter 
+Adhi Kadhu Valu Godavapadevallu Raa 
+Na Chinnapudu Nunchi Avi Normal Ee Ra Andhari Lives Lo Kani Appatiki 
+Nenu Chinnapiladini Appuduki Naku Telidhu Ra Chala 
+Bayam Vesedhi raa Ala Periganu Raa Nenu Cinema La Alochistanu 
+Ani Annav Kadha Nenu Chala Vishyalu Telusukundhi Andhulo Nenu
+Aa Fears Ani Marchipovadaniki Avi Chusthanu 
+</p>
+<p>
+May be Baita Vallatho Parichayam Ledhu Naku Evaru Leru Raaa 
+Andharu Vunnaru Anthe Raa Kani Na Manasu Ni Ardham Chesukunna Vallu
+Okaru Kuda Leru Nuv Vachayvu Manam Love You Cheppukokunda 
+Ne Nuv Naku Prathi Realtion Ni Ichesave
+Amma Laga Chusukunav ,Nanna Laga Gasurukunnav ,Akka Chelli Laga 
+Care Tisukunav ,Anna Tammudu Laga Dairyam Ichhave
+Naku Frndship Ni Ichav Inka Naku Entho Important Ayina Mee God Ni 
+Parichayam Chesav Nuv Lekhapote Naku Worship Ela Cheyalo
+Telisivundedhi Kadhu Raaaa
+</p>
+<p>
+Kanna Nenu Anni Indhilo Cheppalenu Ra Kani Naku Matladutham 
+Radhu Ra Adhi Eppudu Niku Ardham Kadhu
+Chatting Lo Matladutha Endhukante No Physical Interaction Kadha 
+Naku Bayam Ledhu Andhuke Kani Ippudu Manam Vidipoyamu
+Kani Kalise Vunnam Nuv Love Ledhu Ani Cheppinantha Matrana 
+Love Ledhu Annatu Kadhu Kadha Nenu Ekkuva Alochinchestha Raa
+Niku Laga Kani Nuv Okkadanive Overthink Chestunav Ani 
+Anukuntav Kani Niku Nenu Vunna Niku Anni Explain Chesi
+Nee Overthink Ni Apptaniki Kani Naku Evaru Leru Nuv Tappa 
+Ippudu Nuv Kuda Levu Naku  Andhuke Na Mental Condition
+Sarigga Ledhu Andhuke Nenu Teliyakunda Tappu Chesanu Raa 
+Daniki Nuv Emi Cheppina Chesthanu Raa Kani Manam Vidipoyindhi
+Dani Valla Kadhu So Naku Nitho Matladali Anni Explain 
+Cheyali Ani Anipinchindhi Kani Nenu Matladithene Niku Health
+Padayipotundhi Nen Vundedhe Nikosam Niku Emaina Ayithe Thatukolenu 
+</p>
+<p>
+Nak Ippatiki Telidhu Nenu Tayaru Chesindhi Nuv Chusthavo 
+Ledho Ani Nen Evarni Ibandhi Pettali Anukovadam
+Ledhu Andhariki Dooram Ga Vuntuna Nuv Anukovachu Kani 
+Evaro Okaru Vuntaru Le Ani Kani Nuv Velthu Velthu Anni
+Tisukuvellipoyavu Nuv Vadhilesaka Nanu Anni Vishayalu 
+Manushulu Dooram Ayipoyare Adhi Entha Kastamo 
+Kanna Annav Kadha Endhuku Chestunav Namaz Evari Kosam Ani 
+Nikosame Inka Ni Health Kosam Na Relation Kosam Matram Kadhu
+Manam Chusukovalsina Vishyam Maname Chusukovali Anukunna Raa 
+Manam Matladukovali Na Frnd Vishyam Tappa Nenu 
+Anni Explain Cheyagalanu Raa Please Niku Matladali Anipisthene Matladu 
+Ledhante Ledhu Kani Kastam Ga Matram 
+Matladuthaki Ramaku Inko Vishyam Naku Namaz Cheyadam Entha Kastamo 
+Telusa Nenu Ramzan Appudu Entha Kastappadano 
+Niku Telidhu Nenu Niku Eppudu Cheppaledhu
+</p>
+<P>
+So Nadhi Fake Love Kadhu Ani Naku Telusu Kani Nuv Nannu 
+Blame Chesav Nadhi Love ee Kadhu Ani Ela Anipinchindhe 
+Niku Naku Intha Narakam Chupinchali Ani Inka Nee Frnd 
+Gurinchi Antava Tana Gurinchi Niku Kalisinnapudu Chala 
+Cheppali Endhuku Vadu Naku Istam Ledho Inka Nen 
+Entha Freedom Ichhano Niku Teliyadhu Chudu Baita 
+Prapancham Ni Telustundhi Inka ekkuva Matladalenu 
+Kani Chala Miss Avutuna Telusuko Aa Narakam 
+Ela Vuntundho Telidhu Raaa Anubhavistuna Ga Nen 
+Cheppagalanu Entha Kastamo Sorry For Everythingg
+</P>
+<P>
+Niku Idhi Telusa Prathisari Nenu Manam Kalisi Tirigina 
+Chotulu Ekkuva Vunna Places First sight Place 
+Kanisam Vellina Okasari Ayina Chustanu Maybe Nuv 
+Ippatiki Marchipoyivuntav Nak Ardhamkadhu Nenu Marchipoye 
+Vadina Ledha Nuvva Ani Inka Last Ga Oka Vishyam Cheppana 
+Everytime I See Nuv Buss Lo Velletappudu Okasari Ayina 
+Chusthav Ani PrathiKshanam Bus Vaipe Chusthanu Ninu Marchipolenu Nuv 
+Entha Po Manna Kani Disturb Cheyalenu Raaa 
+Be Happyyyy I LOVE YOU Than Anyone Niku Telidhu Nenu Entha 
+Secret Ga Love Chesano Ninu Maybe My Fears Stopped Me 
+When We Meet Again I want To Show You My Love For Life Longggggg
+</P>
+<P>
+Inka Nuv Nalo Tappulu Vethakali Anukunte Ok Go-on Nenu Inka Explain Cheyalenu 
+Paina Antha Cheppina Dantlo Emaina Tappu Ga Matladi Vunte 
+Nanu Kshaminchu Nenu Ranu Nee Life Loki Ani Promise Chesa Kadha 
+Appudu Nijam Ga Naku Ayithe Cheppali Anipinchala 
+Ippudu Cheptuna Ninu Disturb Cheyanu Eppatiki I will Take Care 
+This Will Be Last Time Nenu Oka Abbai Ne Kadha Naku Feelings Edichayi Kadha
+Intha La Ibbandhi Pettav Tatukolekha Tinatam Manestuna 
+Just Nitho Matladalekha Anthe Inkemi Kadhhu 
+Tinabuddhi Kataledhu Raa Malli Cheptuna Emaina Tappuga 
+Matladi Vunte Sorry Inthakante Ekkuva Love Expect Chesav 
+Nenu Nuv Expect Chesina Danikanna Ekkuve Ivvali Anukuna Nenu Cheddavadinaaaaa raaaa
+</P>
+<P>
+  Nuv Kastapadi Emi Love Cheyalsina Avasaram Ledhu Le Ra Niku Nachinatte 
+  Vundu Nenu Niku Kavalsina Prathi Sari Oka Mata Chepthe Nijam Ga Ekkada 
+  Vunna Vachestha Idhi Matram Nijam Raaa Inka Nenu Daring And Dashing Ani Nammava 😂😂
+  Marchipolenu Nee Gnyapakalu Avi Nive Kadhu Nave Kadhu Manavi Avi Naku Inka Chala Vunnayi Le And 
+  I had Two Wishes Raaa Niku Eppudu emi Korikalu Levu Ani Antanu Kadha Nuv Adiginappudu Cheptanu 
+  <em>Good Byee Raaa</em> 
+</P>
+
+
+</div>
+    </div>
+  </div>
+
+
+  <div class="story-actions">
+    <button class="end-btn" onclick="goMemory()">Special Memory ✨</button>
+    <button class="end-btn2" onclick="goFinal()">final page 💕</button>
+
+  </div>
+
+</section>
+
+
+<section id="memoryPage" class="page">
+  <canvas id="memoryCanvas"></canvas>
+
+  <h1 class="page-title">🌙 A Special Memory 🌙</h1>
+
+  <div class="real-memory-wrapper">
+
+    <button class="real-arrow left" onclick="prevMemory()">‹</button>
+
+   <div class="memory-hover-zone">
+  <div class="real-memory-card" id="memoryCard">
+    <img id="memoryImg" src="h44.jpg">
+    <div class="real-caption" id="memoryText">
+      Kanna Ee Pic Gurthundha Manam Relationship Loki Vellaka Mundhu Tisukunna Last Pic I Wish Mana Jeevitham Lo Jarigina Chedu Vishyam Antha Mana Realtion Strong Avutham Kosamenemo ,May Be Our Destiny ❤️‍🩹
+    </div>
+  </div>
+</div>
+
+
+    <button class="real-arrow right" onclick="nextMemory()">›</button>
+
+  </div>
+
+  <button class="back-btn" onclick="goStory()">⬅ Back</button>
+</section>
+
+
+<!-- ================= AUDIO ================= -->
+<div id="audioUnlock"></div>
+<audio id="bgMusic" loop></audio>
+<button id="musicBtn" class="music-btn">🔇</button>
+
+<script>
+/* ================= SPA NAV ================= */
+function showPage(id){
+  document.querySelectorAll(".page").forEach(p=>{
+    if(p.classList.contains("active")){
+      p.classList.add("exit");
+      setTimeout(()=>p.classList.remove("active","exit"),900);
+    }
+  });
+  setTimeout(()=>document.getElementById(id).classList.add("active"),900);
+}
+function goMemory(){ showPage("memoryPage"); }
+function goStory(){ showPage("storyPage"); }
+/* ================= USER CONTROLLED STORY SCROLL ================= */
+/* ================= LOCKED CINEMATIC STORY SCROLL ================= */
+/* ================= CINEMATIC INERTIA SCROLL ================= */
+
+const stage = document.querySelector(".story-stage");
+const storyText = document.getElementById("storyText");
+
+let currentY = 0;
+let targetY = 0;
+const ease = 0.08;   // 🔥 lower = smoother
+function maxScroll(){
+  return Math.max(
+    0,
+    storyText.scrollHeight - stage.clientHeight
+  );
+}
+
+/* wheel */
+window.addEventListener("wheel", e=>{
+  if(!document.getElementById("storyPage").classList.contains("active")) return;
+
+  targetY += e.deltaY * 0.9;
+  targetY = Math.max(0, Math.min(targetY, maxScroll()));
+});
+
+/* touch */
+let touchY = 0;
+window.addEventListener("touchstart", e=>{
+  touchY = e.touches[0].clientY;
+});
+
+window.addEventListener("touchmove", e=>{
+  if(!document.getElementById("storyPage").classList.contains("active")) return;
+
+  const y = e.touches[0].clientY;
+  targetY += (touchY - y) * 1.1;
+  touchY = y;
+
+  targetY = Math.max(0, Math.min(targetY, maxScroll()));
+});
+
+/* animation loop */
+function animateStory(){
+  currentY += (targetY - currentY) * ease;
+  storyText.style.transform = `translateY(${-currentY}px)`;
+  requestAnimationFrame(animateStory);
+}
+animateStory();
+
+
+
+/* ================= MUSIC ================= */
+const music=document.getElementById("bgMusic");
+const btn=document.getElementById("musicBtn");
+const unlock=document.getElementById("audioUnlock");
+
+music.src="song for zula.mp3";
+music.volume=0.4;
+
+unlock.onclick=()=>{
+  music.play();
+  unlock.style.display="none";
+  btn.textContent="🔊";
+};
+
+btn.onclick=()=>{
+  if(music.paused){
+    music.play();
+    btn.textContent="🔊";
+  }else{
+    music.pause();
+    btn.textContent="🔇";
+  }
+};
+
+/* ===== MEMORY DATA ===== */
+const memories = [
+  { img:"h44.jpg", text:"Kanna Ee Pic Gurthundha Manam Relationship Loki Vellaka Mundhu Tisukunna Last Pic I Wish Mana Jeevitham Lo Jarigina Chedu Vishyam Antha Mana Realtion Strong Avutham Kosamenemo ,May Be Our Destiny ❤️‍🩹" },
+  { img:"h50.jpg", text:"Edhi Nee First Saree Na Vallane Vesukunnanu Ani Annav Nenu Na Pilla Ni First Time Saree Lo Chusinnapudu Naku Ela Anipinchindho Telusa Andham Ga Vunnav Ra Ani Forehead Medha Kiss Cheyali Anukunna Antha Nachesav Raa💕" },
+  { img:"h100.jpg", text:"Rey Nenu Niku Oka Promise Chesa And I Want To Keep It For Eternity Na Prema Abbadham Kadhu Raaa 😭😭❤️‍🩹 " }
+];
+
+let memIndex = 0;
+const card = document.getElementById("memoryCard");
+const img = document.getElementById("memoryImg");
+const txt = document.getElementById("memoryText");
+
+/* render */
+function showMemory(direction = 1){
+  card.style.transform = `translateX(${direction * -60}px)`;
+  card.style.opacity = 0;
+
+  setTimeout(()=>{
+    img.src = memories[memIndex].img;
+    txt.textContent = memories[memIndex].text;
+
+    card.style.transform = "translateX(0)";
+    card.style.opacity = 1;
+  }, 350);
+}
+
+function nextMemory(){
+  memIndex = (memIndex + 1) % memories.length;
+  showMemory(1);
+}
+
+function prevMemory(){
+  memIndex = (memIndex - 1 + memories.length) % memories.length;
+  showMemory(-1);
+}
+
+/* ================= SWIPE GESTURE ================= */
+let startX = 0;
+let endX = 0;
+let isSwiping = false;
+
+const swipeZone = document.querySelector(".memory-rail");
+
+/* touch start */
+swipeZone.addEventListener("touchstart", e=>{
+  startX = e.touches[0].clientX;
+  isSwiping = true;
+});
+
+/* touch move */
+swipeZone.addEventListener("touchmove", e=>{
+  if(!isSwiping) return;
+  endX = e.touches[0].clientX;
+});
+
+/* touch end */
+swipeZone.addEventListener("touchend", ()=>{
+  if(!isSwiping) return;
+
+  const diff = endX - startX;
+
+  if(Math.abs(diff) > 50){   // 🔒 safe threshold
+    if(diff < 0){
+      nextMemory();
+    }else{
+      prevMemory();
+    }
+  }
+
+  isSwiping = false;
+});
+
+/* trackpad / mouse swipe */
+let mouseDownX = null;
+
+swipeZone.addEventListener("mousedown", e=>{
+  mouseDownX = e.clientX;
+});
+
+swipeZone.addEventListener("mouseup", e=>{
+  if(mouseDownX === null) return;
+
+  const diff = e.clientX - mouseDownX;
+
+  if(Math.abs(diff) > 60){
+    if(diff < 0){
+      nextMemory();
+    }else{
+      prevMemory();
+    }
+  }
+
+  mouseDownX = null;
+});
+
+
+
+/* ================= CANVAS ================= */
+const canvas=document.getElementById("memoryCanvas");
+const ctx=canvas.getContext("2d");
+function resize(){canvas.width=innerWidth;canvas.height=innerHeight;}
+window.onresize=resize;resize();
+const dots=[...Array(80)].map(()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2}));
+function draw(){
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ dots.forEach(d=>{
+  ctx.fillStyle="rgba(255,150,200,.6)";
+  ctx.beginPath();
+  ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+  ctx.fill();
+  d.y-=0.3;
+  if(d.y<0)d.y=canvas.height;
+ });
+ requestAnimationFrame(draw);
+}
+draw();
+
+function goFinal(){
+  document.body.style.opacity=0;
+  setTimeout(()=>{
+    window.location.href="final.html";
+  },900);
+}
+
+
+  function showMemory(direction = 1){
+  card.style.transform = `translateX(${direction * -60}px)`;
+  card.style.opacity = 0;
+
+  setTimeout(()=>{
+    img.src = memories[memIndex].img;
+    txt.textContent = memories[memIndex].text;
+
+    card.style.transform = "translateX(0)";
+    card.style.opacity = 1;
+  }, 350);
+  }
+
+
+</script>
+
+</body>
+</html>
